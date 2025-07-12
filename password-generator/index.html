@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password-Generator</title>
+    <style>
+      li {
+        font-size: 15px;
+        font-weight: bold;
+        background-color: rgb(0, 0, 0, 0.3);
+        padding: 2px 7px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-cover bg-center h-screen flex sm:flex-row sm:justify-center items-center flex-col justify-center"
+    style="background-image: url(./public/background.jpg)"
+  >
+    <div
+      id="root"
+      class="bg-[rgb(0,0,0,0.4)] h-fit w-[500px] flex flex-col justify-center items-center rounded-lg py-10"
+      type="module"
+      src="/src/main.jsx"
+    ></div>
+    <div
+      class="bg-[rgb(0,0,0,0.4)] h-fit w-[500px] flex flex-col justify-center items-center rounded-lg py-10 sm:ml-3 sm:mt:0 mt-4"
+      type="module"
+      src="/src/main.jsx"
+    >
+      <h3 class="w-[80%] font-extrabold disappear text-[#fecdec] mb-1">
+        YOUR SAVED PASSWORD WILL APPEAR HERE
+      </h3>
+      <ul id="store"></ul>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
