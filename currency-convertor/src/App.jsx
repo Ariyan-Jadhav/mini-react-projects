@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import InputBox from "./components/InputBox";
 import useCurrencyInfo from "./hooks/useCurrencyInfo.js";
+import { currencyNames, funnyNames } from "./utils/currencyNames.js";
 
 function App() {
-  const [amount1, setAmount1] = useState();
-  const [amount2, setAmount2] = useState();
+  const [amount1, setAmount1] = useState(0);
+  const [amount2, setAmount2] = useState(0);
   const [from, setFrom] = useState("inr");
   const [to, setTo] = useState("usd");
   const [activeInput, setActiveInput] = useState("input1");
+  const [displayName1, setDisplayName1] = useState(currencyNames[from]);
+  const [displayName2, setDisplayName2] = useState(currencyNames[to]);
 
   const currencyInfo = useCurrencyInfo(from);
   const options = Object.keys(currencyInfo || {});
@@ -31,6 +34,20 @@ function App() {
       const reverseRate = 1 / currencyInfo[to];
       setAmount1(amount2 * reverseRate);
     }
+    if (currencyNames.hasOwnProperty(from)) {
+      setDisplayName1(currencyNames[from]);
+    } else {
+      setDisplayName1(
+        funnyNames[Math.floor(Math.random() * funnyNames.length)]
+      );
+    }
+    if (currencyNames.hasOwnProperty(to)) {
+      setDisplayName2(currencyNames[to]);
+    } else {
+      setDisplayName2(
+        funnyNames[Math.floor(Math.random() * funnyNames.length)]
+      );
+    }
   }, [amount1, amount2, from, to, currencyInfo, activeInput]);
 
   return (
@@ -45,6 +62,8 @@ function App() {
         onCurrencyChange1={(from) => setFrom(from)}
         onCurrencyChange2={(to) => setTo(to)}
         currencyOptions={options}
+        displayName1={displayName1}
+        displayName2={displayName2}
       ></InputBox>
     </>
   );
