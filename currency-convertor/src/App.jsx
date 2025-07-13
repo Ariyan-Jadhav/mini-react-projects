@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import InputBox from "./components/InputBox";
+import useCurrencyInfo from "./hooks/useCurrencyInfo.js";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [amount1, setAmount1] = useState();
+  const [amount2, setAmount2] = useState();
+  const [from, setFrom] = useState("inr");
+  const [to, setTo] = useState("usd");
+  const [activeInput, setActiveInput] = useState("input1");
+
+  const currencyInfo = useCurrencyInfo(from);
+  const options = Object.keys(currencyInfo || {});
+
+  const handleInput1Change = (e) => {
+    const val = e.target.value || 0;
+    setAmount1(val);
+    setActiveInput("input1");
+  };
+
+  const handleInput2Change = (e) => {
+    const val = e.target.value || 0;
+    setAmount2(val);
+    setActiveInput("input2");
+  };
+
+  useEffect(() => {
+    if (activeInput === "input1") {
+      setAmount2(amount1 * currencyInfo[to]);
+    } else if (activeInput === "input2") {
+      const reverseRate = 1 / currencyInfo[to];
+      setAmount1(amount2 * reverseRate);
+    }
+  }, [amount1, amount2, from, to, currencyInfo, activeInput]);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <InputBox
+        amount1={amount1}
+        amount2={amount2}
+        handleInput1Change={handleInput1Change}
+        handleInput2Change={handleInput2Change}
+        selectCurrency1={from}
+        selectCurrency2={to}
+        onCurrencyChange1={(from) => setFrom(from)}
+        onCurrencyChange2={(to) => setTo(to)}
+        currencyOptions={options}
+      ></InputBox>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
