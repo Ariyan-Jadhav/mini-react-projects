@@ -37,14 +37,16 @@ function App() {
     <TodoProvider
       value={{ todos, addTodo, updateTodo, deleteTodo, toggleCompleted }}
     >
-      <Todo />
-      {todos.map((todo) => {
-        return (
-          <div key={todo.id}>
-            <TodoTray todo={todo} />
-          </div>
-        );
-      })}
+      <div className="flex flex-col bg-amber-400 h-screen justify-center items-center">
+        <Todo />
+        {todos.map((todo) => {
+          return (
+            <div key={todo.id}>
+              <TodoTray todo={todo} />
+            </div>
+          );
+        })}
+      </div>
     </TodoProvider>
   );
 }
