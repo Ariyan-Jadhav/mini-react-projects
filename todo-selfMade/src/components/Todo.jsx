@@ -1,5 +1,5 @@
-import React from "react";
-import { useTodo } from "../../../todo/src/contexts/todoContext";
+import React, { useState } from "react";
+import { useTodo } from "../contexts/todoContext";
 
 function Todo() {
   const [todo, setTodo] = useState("");
@@ -18,8 +18,9 @@ function Todo() {
         type="text"
         onChange={(e) => setTodo(e.target.value)}
         value={todo}
+        placeholder="Type here"
       />
-      <button type="submit"></button>
+      <button type="submit">Submit</button>
     </form>
   );
 }
