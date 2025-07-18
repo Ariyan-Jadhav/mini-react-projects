@@ -10,6 +10,8 @@ Each project is built using modern React practices.
 |                       |                                            |
 |                     | ![](currency-convertor/public/preview2.png) |
 |Password Generator | ![](password-generator/public/preview.png) |
+|                       |                                            |
+|Todo | ![](todo-selfMade/public/image.png) |
 
 
 
