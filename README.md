@@ -6,11 +6,11 @@ A collection of clean, responsive **React.js mini projects** built for showcasin
 Each project is built using modern React practices.
 | Project         | Preview                        |
 |----------------|------------------------------------|
-|Currency Converter | ![](currency-convertor/public/preview1.png) |
+|Todo | ![](todo-selfMade/public/image.png) |
 |                       |                                            |
 |Password Generator | ![](password-generator/public/preview.png) |
 |                       |                                            |
-|Todo | ![](todo-selfMade/public/image.png) |
+|Currency Converter | ![](currency-convertor/public/preview1.png) |
 
 
 
